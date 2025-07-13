@@ -29,7 +29,10 @@ YunMei(
 1. **void unLock()**
    开门
 
-使用示例(这里)
+## 使用示例
+
+可以直接在 Arduino 的示例中打开这个项目
+
 ```cpp
 #include <YunMei.h>
 
@@ -50,7 +53,7 @@ void setup() {
   esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
 
   if (wakeup_reason == ESP_SLEEP_WAKEUP_EXT0) {
-    
+
     if (yunmei.isConnected()) {     //判断是否已连接
       yunmei.unLock();
       Serial.println("解锁成功");

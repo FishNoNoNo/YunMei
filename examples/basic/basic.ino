@@ -2,6 +2,7 @@
 
 #define unLockBtn 4
 
+//初始化对象
 YunMei yunmei("MyESP32", "06_522", "D1:95:6E:ED:CF:6D",
               "6E400001-B5A3-F393-E0A9-D1956EEDCF6D",
               "6E400002-B5A3-F393-E0A9-D1956EEDCF6D",
@@ -16,12 +17,12 @@ void setup() {
   esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
 
   if (wakeup_reason == ESP_SLEEP_WAKEUP_EXT0) {
-    
-    if (yunmei.isConnected()) {
+
+    if (yunmei.isConnected()) {     //判断是否已连接
       yunmei.unLock();
       Serial.println("解锁成功");
-    } else if(yunmei.begin()) {
-      yunmei.unLock();
+    } else if(yunmei.begin()) {     //连接门锁
+      yunmei.unLock();              //开锁
       Serial.println("解锁成功");
     }else{
       Serial.println("BLE连接失败");
