@@ -36,7 +36,7 @@ class YunMei{
         uint8_t hexCharToByte(char c);
 
     public:
-        YunMei(String bleName, String bleServerName, String bleServerAddress, String ServiceUUID, String characteristicUUID, String secret);
+        YunMei(String bleName, String bleServerName, String bleServerAddress, String serviceUUID, String characteristicUUID, String secret);
         ~YunMei();
         bool isConnected();
         bool begin();

@@ -21,7 +21,7 @@ YunMei(
         String bleName,              //个人蓝牙名称，自定义
         String bleServerName,       //门锁蓝牙名称
         String bleServerAddress,    //门锁蓝牙地址
-        String ServiceUUID,         //门锁蓝牙服务uuid
+        String serviceUUID,         //门锁蓝牙服务uuid
         String characteristicUUID,  //门锁蓝牙特征uuid
         String secret               //加密后得到的密钥
     );
