@@ -175,12 +175,12 @@ YunMei(
 可以直接在 Arduino 的示例中打开这个项目
 
 ```cpp
-#include <YunMei.h>
+#include <YunMeiESP32.h>
 
 #define unLockBtn 4
 
 //初始化对象
-YunMei yunmei("MyESP32", "06_522", "D1:95:6E:ED:CF:6D",
+YunMeiESP32 yunmei("MyESP32", "06_522", "D1:95:6E:ED:CF:6D",
               "6E400001-B5A3-F393-E0A9-D1956EEDCF6D",
               "6E400002-B5A3-F393-E0A9-D1956EEDCF6D",
               "D00F65637032777363757031706BA8"); //这里示例是我修改过的，不然要开我门了
