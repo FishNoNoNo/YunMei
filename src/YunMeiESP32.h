@@ -1,11 +1,11 @@
-#ifndef YunMei_h
+#ifndef YunMeiESP32_h
 
-#define YunMei_h
+#define YunMeiESP32_h
 
 #include<Arduino.h>
 #include <BLEDevice.h>
 
-class YunMei{
+class YunMeiESP32{
     private:
         String bleName;
         String bleServerName;
@@ -36,8 +36,8 @@ class YunMei{
         uint8_t hexCharToByte(char c);
 
     public:
-        YunMei(String bleName, String bleServerName, String bleServerAddress, String serviceUUID, String characteristicUUID, String secret);
-        ~YunMei();
+        YunMeiESP32(String bleName, String bleServerName, String bleServerAddress, String serviceUUID, String characteristicUUID, String secret);
+        ~YunMeiESP32();
         bool isConnected();
         bool begin();
         void unLock();

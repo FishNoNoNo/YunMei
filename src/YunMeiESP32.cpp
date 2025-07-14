@@ -1,6 +1,6 @@
-#include "YunMei.h"
+#include "YunMeiESP32.h"
 
-uint8_t YunMei::hexCharToByte(char c)
+uint8_t YunMeiESP32::hexCharToByte(char c)
 {
     if (c >= '0' && c <= '9')
         return c - '0';
@@ -11,7 +11,7 @@ uint8_t YunMei::hexCharToByte(char c)
     return 0;
 }
 
-uint8_t *YunMei::hexStringToBytes(const char *hex, size_t *outLen)
+uint8_t *YunMeiESP32::hexStringToBytes(const char *hex, size_t *outLen)
 {
     *outLen = 0;
     if (!hex || strlen(hex) == 0)
@@ -60,7 +60,7 @@ uint8_t *YunMei::hexStringToBytes(const char *hex, size_t *outLen)
     return bytes;
 }
 
-YunMei::YunMei(String bleName, String bleServerName, String bleServerAddress, String serviceUUID, String characteristicUUID, String secret)
+YunMeiESP32::YunMeiESP32(String bleName, String bleServerName, String bleServerAddress, String serviceUUID, String characteristicUUID, String secret)
 {
     this->bleName = bleName;
     this->bleServerName = bleServerName;
@@ -79,7 +79,7 @@ YunMei::YunMei(String bleName, String bleServerName, String bleServerAddress, St
     this->firstScan = true;
 }
 
-YunMei::~YunMei()
+YunMeiESP32::~YunMeiESP32()
 {
     if (client && client->isConnected())
     {
@@ -92,7 +92,7 @@ YunMei::~YunMei()
     }
 }
 
-class YunMei::DeviceCallbacks : public BLEAdvertisedDeviceCallbacks
+class YunMeiESP32::DeviceCallbacks : public BLEAdvertisedDeviceCallbacks
 {
 private:
     String targetName;
@@ -194,7 +194,7 @@ public:
     }
 };
 
-void YunMei::restartScan()
+void YunMeiESP32::restartScan()
 {
     if (this->client)
     {
@@ -209,7 +209,7 @@ void YunMei::restartScan()
     this->scan();
 }
 
-void YunMei::scan()
+void YunMeiESP32::scan()
 {
     if (firstScan)
     {
@@ -226,7 +226,7 @@ void YunMei::scan()
     pBLEScan->start(10);
 }
 
-class YunMei::ClientCallbacks : public BLEClientCallbacks
+class YunMeiESP32::ClientCallbacks : public BLEClientCallbacks
 {
 private:
     bool &connectedRef;
@@ -248,7 +248,7 @@ public:
     }
 };
 
-bool YunMei::connectToServer()
+bool YunMeiESP32::connectToServer()
 {
     Serial.print("Connecting to device: ");
 
@@ -307,7 +307,7 @@ bool YunMei::connectToServer()
     return true;
 }
 
-void YunMei::writeCharacteristic(const char *message)
+void YunMeiESP32::writeCharacteristic(const char *message)
 {
     if (!this->connected)
     {
@@ -333,12 +333,12 @@ void YunMei::writeCharacteristic(const char *message)
         free(data); // 使用 malloc 要记得释放
 }
 
-bool YunMei::isConnected(){
+bool YunMeiESP32::isConnected(){
     return this->connected;
 }
 
 
-bool YunMei::begin()
+bool YunMeiESP32::begin()
 {
     this->scan();
     int connectRetries = 0;
@@ -356,7 +356,7 @@ bool YunMei::begin()
     return true;
 }
 
-void YunMei::unLock()
+void YunMeiESP32::unLock()
 {
     this->writeCharacteristic(this->secret.c_str());
 }
